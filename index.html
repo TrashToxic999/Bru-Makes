@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Bru Makes</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Montserrat', sans-serif;
+      color: #5d3b63;
+      min-height: 100vh;
+      background: url('https://img.freepik.com/fotos-premium/fundo-de-aquarela-de-cor-violeta_427757-306.jpg?semt=ais_hybrid&w=740') no-repeat center center fixed;
+      background-size: cover;
+      /* Overlay para melhorar contraste */
+      position: relative;
+    }
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background: rgba(247, 236, 255, 0.72);
+      z-index: 0;
+      pointer-events: none;
+    }
+    .brilho-borda {
+      position: relative;
+      z-index: 1;
+      overflow: hidden;
+    }
+    .brilho-borda::before {
+      content: '';
+      position: absolute;
+      top: -4px; left: -4px; right: -4px; bottom: -4px;
+      z-index: -1;
+      background: linear-gradient(120deg, #c77dff, #b5a1ff, #e6d0f6, #c77dff);
+      filter: blur(8px);
+      opacity: 0.7;
+      border-radius: 16px;
+      animation: brilhoRoxo 3s linear infinite;
+    }
+    @keyframes brilhoRoxo {
+      0% { filter: blur(8px) brightness(1); }
+      50% { filter: blur(14px) brightness(1.2);}
+      100% { filter: blur(8px) brightness(1);}
+    }
+    header {
+      background: rgba(241, 227, 250, 0.96);
+      padding: 18px 0 10px 0;
+      text-align: center;
+      border-radius: 0 0 16px 16px;
+      box-shadow: 0 2px 10px #e6d0f6;
+    }
+    header h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2em;
+      margin: 0;
+      letter-spacing: 2px;
+      color: #5d3b63;
+      display: inline-block;
+      vertical-align: middle;
+    }
+    .menu-toggle {
+      display: block;
+      margin: 12px auto 0 auto;
+      font-size: 1.2em;
+      border-radius: 6px;
+      border: 1px solid #bda0d6;
+      background: #f6ebfa;
+      padding: 3px 10px;
+      cursor: pointer;
+    }
+    nav {
+      background: rgba(233, 213, 249, 0.97);
+      display: flex;
+      justify-content: center;
+      gap: 24px;
+      padding: 12px 0;
+      font-size: 1em;
+      border-radius: 0 0 12px 12px;
+      box-shadow: 0 1px 8px #e6d0f6;
+      position: relative;
+      z-index: 1;
+    }
+    nav a {
+      color: #a765c1;
+      text-decoration: none;
+      font-weight: bold;
+      padding: 10px 22px;
+      border-radius: 18px;
+      transition: background .2s;
+      font-size: 1em;
+    }
+    nav a:hover {
+      background: #a765c1;
+      color: #fff;
+    }
+    .banner {
+      background: #eee7ed;
+      padding: 32px 10px 24px 10px;
+      text-align: center;
+      border-radius: 10px;
+      margin: 20px auto 0 auto;
+      max-width: 620px;
+      box-shadow: 0 2px 12px #e6d0f6;
+    }
+    .banner h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5em;
+      margin-bottom: 10px;
+    }
+    .banner p {
+      font-size: 1em;
+    }
+    .cupom {
+      background: #e6d0f6;
+      border: 2px dashed #a765c1;
+      padding: 13px 6px;
+      margin: 24px auto 0 auto;
+      max-width: 340px;
+      text-align: center;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px #e6d0f6;
+      position: relative;
+      z-index: 1;
+    }
+    .cupom h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1em;
+      margin-bottom: 7px;
+    }
+    .cupom strong {
+      font-size: 1.07em;
+      display: block;
+      margin-top: 8px;
+      color: #a765c1;
+    }
+    .section {
+      background: rgba(255,255,255,0.94);
+      padding: 24px 7px;
+      max-width: 900px;
+      margin: 24px auto 0 auto;
+      border-radius: 10px;
+      box-shadow: 0 2px 12px #e6d0f6;
+    }
+    .section h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1em;
+      margin-bottom: 16px;
+      color: #a765c1;
+    }
+    .produtos {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
+    }
+    .produto {
+      background: #fff7ff;
+      border-radius: 10px;
+      padding: 12px 5px;
+      box-shadow: 0 2px 10px #e6d0f6;
+      text-align: center;
+      transition: transform .18s, box-shadow .18s;
+    }
+    .produto:hover {
+      transform: scale(1.04);
+      box-shadow: 0 6px 24px #a765c1;
+    }
+    .produto h4 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1em;
+      margin-bottom: 4px;
+      color: #a765c1;
+    }
+    footer {
+      background: rgba(241, 227, 250, 0.94);
+      text-align: center;
+      padding: 14px;
+      font-size: 0.93em;
+      margin-top: 24px;
+      border-radius: 0 0 12px 12px;
+    }
+
+    /* ------ MOBILE RESPONSIVE ------ */
+    @media (max-width: 600px) {
+      header h1 {
+        font-size: 1.15em;
+      }
+      .banner {
+        padding: 15px 3px 12px 3px;
+      }
+      .banner h2 {
+        font-size: 1em;
+      }
+      .section {
+        padding: 10px 3px;
+        margin: 13px auto 0 auto;
+      }
+      .produtos {
+        gap: 8px;
+      }
+      .produto {
+        padding: 8px 2px;
+      }
+      nav {
+        flex-direction: column;
+        gap: 0;
+        align-items: flex-start;
+        padding: 0;
+        font-size: 1em;
+        position: absolute;
+        width: 75vw;
+        max-width: 260px;
+        top: 56px;
+        left: 0;
+        box-shadow: 0 2px 12px #e6d0f6;
+        z-index: 9;
+        display: none;
+        border-radius: 0 0 12px 12px;
+      }
+      nav.active {
+        display: flex;
+      }
+      nav a {
+        width: 100%;
+        padding: 14px 0 14px 20px;
+        border-radius: 0;
+        border-bottom: 1px solid #e5c2f2;
+      }
+      .menu-toggle {
+        display: block;
+      }
+      /* Deixa o brilho mais discreto no mobile */
+      .brilho-borda::before {
+        opacity: 0.45 !important;
+        filter: blur(5px) !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="brilho-borda">
+    <h1>Bru Makes</h1>
+    <button class="menu-toggle" aria-label="Abrir menu">&#9776;</button>
+  </header>
+  <nav id="menuNav" class="brilho-borda">
+    <a href="#inicio">Início</a>
+    <a href="#produtos">Produtos</a>
+    <a href="#sobre">Sobre</a>
+    <a href="#contato">Contato</a>
+  </nav>
+  <section class="banner brilho-borda" id="inicio">
+    <h2>Realce sua beleza com um toque de lilás ✨</h2>
+    <p>Maquiagens, dicas e muito charme com a Bru.</p>
+  </section>
+  <div class="cupom">
+    <h3>É sua primeira compra?</h3>
+    <p>Use o cupom abaixo e ganhe 10% de desconto:</p>
+    <strong>BEM VINDA</strong>
+  </div>
+  <section class="section brilho-borda" id="produtos">
+    <h3>Produtos em Destaque</h3>
+    <div class="produtos">
+      <div class="produto">
+        <h4>Batom Lilás</h4>
+        <p>Cor intensa e acabamento matte.</p>
+      </div>
+      <div class="produto">
+        <h4>Paleta de Sombras</h4>
+        <p>Combinações perfeitas para todos os tons de pele.</p>
+      </div>
+      <div class="produto">
+        <h4>Iluminador Glow</h4>
+        <p>Brilho natural com fundo rosado.</p>
+      </div>
+    </div>
+  </section>
+  <section class="section brilho-borda" id="sobre">
+    <h3>Sobre a Bru</h3>
+    <p>Sou a Bru, apaixonada por maquiagem e tudo que realça a beleza de cada mulher. Aqui compartilho meus produtos favoritos, dicas e inspirações. Seja bem-vinda ao Bru Makes! 💜</p>
+  </section>
+  <section class="section brilho-borda" id="contato">
+    <h3>Fale comigo</h3>
+    <p>
+      Email: brumakes@exemplo.com<br>
+      WhatsApp: <a href="https://wa.me/5511982629470" target="_blank">Clique aqui para falar no WhatsApp</a><br>
+      Instagram: <a href="https://instagram.com/brumakes" target="_blank">@brumakes</a>
+    </p>
+  </section>
+  <footer class="brilho-borda">
+    <p>&copy; 2025 Bru Makes - Todos os direitos reservados.</p>
+  </footer>
+  <script>
+    const menuToggle = document.querySelector('.menu-toggle');
+    const menuNav = document.getElementById('menuNav');
+    menuToggle.addEventListener('click', function() {
+      menuNav.classList.toggle('active');
+    });
+    menuNav.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        menuNav.classList.remove('active');
+      });
+    });
+  </script>
+</body>
+</html>
